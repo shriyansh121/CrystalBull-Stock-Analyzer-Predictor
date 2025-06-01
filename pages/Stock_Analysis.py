@@ -21,9 +21,19 @@ today = datetime.date.today()
 with col1:
     ticker = st.text_input("Stock Ticker", "TSLA")
 with col2:
-    start_date = st.date_input("Choose Start Date", datetime.date(today.year -1, today.month, today.day))
-with col3: 
-    end_date = st.date_input("Choose End Date", datetime.date(today.year, today.month, today.day))
+    start_date = st.date_input(
+        "Choose Start Date",
+        value=today - datetime.timedelta(days=365),
+        min_value=datetime.date(2000, 1, 1),
+        max_value=today
+    )
+with col3:
+    end_date = st.date_input(
+        "Choose End Date",
+        value=today,
+        min_value=datetime.date(2000, 1, 1),
+        max_value=today
+    )
 
 st.subheader(ticker)
 
